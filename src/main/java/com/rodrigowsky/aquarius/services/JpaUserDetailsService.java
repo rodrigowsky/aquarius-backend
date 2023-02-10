@@ -1,9 +1,10 @@
 package com.rodrigowsky.aquarius.services;
 
 import com.rodrigowsky.aquarius.dto.RegisterDTO;
-import com.rodrigowsky.aquarius.entities.Teacher;
+import com.rodrigowsky.aquarius.entities.Student;
 import com.rodrigowsky.aquarius.entities.User;
 import com.rodrigowsky.aquarius.model.CustomUserDetails;
+import com.rodrigowsky.aquarius.repositories.StudentRepository;
 import com.rodrigowsky.aquarius.repositories.TeacherRepository;
 import com.rodrigowsky.aquarius.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,8 @@ public class JpaUserDetailsService implements UserDetailsService {
     @Autowired
     private TeacherRepository teacherRepository;
 
+    @Autowired
+    private StudentRepository studentRepository;
 
 
     @Override
@@ -43,22 +46,22 @@ public class JpaUserDetailsService implements UserDetailsService {
 
         User user2 = userRepository.save(user);
         System.out.println("CHECK!!!!!:");
-        System.out.println(user2 instanceof  User);
-        Teacher teacher = new Teacher();
-        teacher.setFirstName(registerDto.getFirstName());
-        teacher.setLastName(registerDto.getLastName());
-        teacher.setPhoneNumber(registerDto.getPhoneNumber());
-        teacher.setEmail(registerDto.getEmail());
+        System.out.println(user2 instanceof User);
+        Student student = new Student();
+        student.setFirstName(registerDto.getFirstName());
+        student.setLastName(registerDto.getLastName());
+        student.setPhoneNumber(registerDto.getPhoneNumber());
+        student.setEmail(registerDto.getEmail());
 
-        teacher.setDateOfBirth(registerDto.getDateOfBirth());
+        student.setDateOfBirth(registerDto.getDateOfBirth());
 
         System.out.println(user2);
         System.out.println(user2.getId());
-        teacher.setUser(user2);
+        student.setUser(user2);
 
-        try{
-            teacherRepository.save(teacher);
-        } catch(Exception e ){
+        try {
+            studentRepository.save(student);
+        } catch (Exception e) {
             System.out.println(e);
         }
 

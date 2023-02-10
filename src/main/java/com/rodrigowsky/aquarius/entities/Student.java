@@ -31,11 +31,11 @@ public class Student {
     private String email;
 
     @Column(name = "phone")
-    private Integer phoneNumber;
+    private String phoneNumber;
 
     //Assign User
     @OneToOne
-    @MapsId
-    @JoinColumn(name = "user", nullable = false)
+    @JoinColumn(name="user_fk", nullable=false)
     private User user;
+
 }

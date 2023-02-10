@@ -28,7 +28,7 @@ public class Teacher {
     private String email;
 
     @Column(name="phone")
-    private Integer phoneNumber;
+    private String phoneNumber;
 
     //Assign User
     @OneToOne

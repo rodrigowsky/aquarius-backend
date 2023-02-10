@@ -16,7 +16,7 @@ public class RegisterDTO {
     private String lastName;
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date dateOfBirth; //to calculate age
-    private Integer phoneNumber;
+    private String phoneNumber;
     private String email;
 
 }
