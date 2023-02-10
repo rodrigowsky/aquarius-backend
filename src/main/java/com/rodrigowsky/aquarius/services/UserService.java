@@ -34,9 +34,11 @@ public class UserService {
 
 
     public User createUser(RegisterDTO registerDto) {
+
+        System.out.println(registerDto.toString());
         User user = new User();
-        UserRoles prefix = registerDto.getUserRole();
-        user.setUsername(prefix.toString() + user.getId());
+        String prefix = assignPrefix(registerDto.getUserRole());
+        user.setUsername(prefix + "_" + registerDto.getUsername());
         user.setPassword(passwordEncoder.encode((registerDto.getPassword())));
         user.setEnabled(true);
         Role roleModel = new Role();
@@ -44,7 +46,7 @@ public class UserService {
         roleModel.setName(registerDto.getUserRole());
 
         user.setRole(roleModel);
-        jpaUserService.registerUser(user);
+        jpaUserService.registerUser(user,registerDto);
 
 
         return user;

@@ -25,14 +25,14 @@ public class TestController {
     private PasswordEncoder passwordEncoder;
 
     @GetMapping("/test")
-    public String testA(){
+    public String testA() {
         return "Receiving Request and Sending Response";
 
     }
 
 
     @PostMapping("/test")
-    public ResponseEntity<String> testC(@RequestBody RegisterDTO registerDto){
+    public ResponseEntity<String> testC(@RequestBody RegisterDTO registerDto) {
 
 //        if (jpaUserService.existsByUsername(registerDto.getUsername())) {
 //            return new ResponseEntity<>("Username is taken!", HttpStatus.BAD_REQUEST);

@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
+import java.util.Date;
+
 
 @Entity
 @Table(name="teacher", schema = "public")
@@ -27,9 +28,12 @@ public class Teacher {
     private String email;
 
     @Column(name="phone")
-    private String phoneNumber;
+    private Integer phoneNumber;
 
     //Assign User
+    @OneToOne
+    @JoinColumn(name="user_fk", nullable=false)
+    private User user;
 
 
 

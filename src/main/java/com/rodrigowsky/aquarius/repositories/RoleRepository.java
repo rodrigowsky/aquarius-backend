@@ -1,13 +1,11 @@
 package com.rodrigowsky.aquarius.repositories;
 
-import com.rodrigowsky.aquarius.entities.*;
-import org.springframework.data.jpa.repository.*;
-import org.springframework.stereotype.*;
-
-import java.util.*;
+import com.rodrigowsky.aquarius.entities.Role;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role,Long> {
 
-    List<Role> findRolesByUsersId(Long userId);
+//    List<Role> findRolesByUsersId(Long userId);
 }
