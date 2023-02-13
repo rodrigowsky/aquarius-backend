@@ -20,6 +20,8 @@ public class Department {
     @Column(name = "full_name")
     private String full_name;
 
+
+
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST,

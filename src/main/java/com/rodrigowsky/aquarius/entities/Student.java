@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -37,5 +39,8 @@ public class Student {
     @OneToOne
     @JoinColumn(name="user_fk", nullable=false)
     private User user;
+
+    @ManyToMany(mappedBy = "students")
+    private Set<Course> course = new HashSet<>();
 
 }

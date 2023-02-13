@@ -40,9 +40,8 @@ public class Teacher {
     @ManyToMany(mappedBy = "teachers")
     private Set<Department> departments = new HashSet<>();
 
-    public void setDepartment(Department department) {
-        this.departments.add(department);
-    }
+    @ManyToMany(mappedBy = "teachers")
+    private Set<Course> course = new HashSet<>();
 
     //Method to remove departments
 
