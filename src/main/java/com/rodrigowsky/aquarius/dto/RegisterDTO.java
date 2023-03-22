@@ -19,4 +19,6 @@ public class RegisterDTO {
     private String phoneNumber;
     private String email;
 
+    private Integer code;
+
 }

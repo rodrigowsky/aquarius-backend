@@ -3,7 +3,8 @@ package com.rodrigowsky.aquarius.services;
 import com.rodrigowsky.aquarius.dto.RegisterDTO;
 import com.rodrigowsky.aquarius.entities.*;
 import com.rodrigowsky.aquarius.model.CustomUserDetails;
-import com.rodrigowsky.aquarius.repositories.*;
+import com.rodrigowsky.aquarius.repositories.nosql.OtpRepository;
+import com.rodrigowsky.aquarius.repositories.sql.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -31,7 +32,10 @@ public class JpaUserDetailsService implements UserDetailsService {
     @Autowired
     private CourseRepository crsRepo;
 
+    @Autowired
+    private OtpRepository otpRepository;
 
+    //Spring Security Needs This To Find The User
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Supplier<UsernameNotFoundException> s =
@@ -42,6 +46,7 @@ public class JpaUserDetailsService implements UserDetailsService {
         return new CustomUserDetails(u);
     }
 
+    //mudar isso para user service
     public void registerUser(User user, RegisterDTO registerDto) {
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
@@ -57,8 +62,8 @@ public class JpaUserDetailsService implements UserDetailsService {
         student.setEmail(registerDto.getEmail()+ "@");
         student.setPhoneNumber(registerDto.getPhoneNumber() + "1234");
         User user2 = userRepository.save(user);
-        System.out.println("CHECK!!!!!:");
-        System.out.println(user2 instanceof User);
+//        System.out.println("CHECK!!!!!:");
+//        System.out.println(user2 instanceof User);
         Teacher teacher = new Teacher();
         teacher.setFirstName(registerDto.getFirstName());
         teacher.setLastName(registerDto.getLastName());
@@ -67,8 +72,8 @@ public class JpaUserDetailsService implements UserDetailsService {
 
         teacher.setDateOfBirth(registerDto.getDateOfBirth());
 
-        System.out.println(user2);
-        System.out.println(user2.getId());
+//        System.out.println(user2);
+//        System.out.println(user2.getId());
         teacher.setUser(user2);
         student.setUser(user2);
         Student student1 = studentRepository.save(student);
@@ -77,18 +82,19 @@ public class JpaUserDetailsService implements UserDetailsService {
             Teacher tch = teacherRepository.save(teacher);
             dpt.setTeacher(tch);
             Department dptBack = dptRepo.save(dpt);
-            System.out.println(dptBack);
+//            System.out.println(dptBack);
             crs.setDepartment(dptBack);
             crs.setTeacher(tch);
             crs.setStudent(student1);
             crsRepo.save(crs);
         } catch (Exception e) {
-            System.out.println(e);
+//            System.out.println(e);
         }
 
 
     }
 
+    //for controller username duplication exception verification
     public boolean existsByUsername(String username) throws UsernameNotFoundException {
         Supplier<UsernameNotFoundException> s =
                 () -> new UsernameNotFoundException("Problem during authentication!");

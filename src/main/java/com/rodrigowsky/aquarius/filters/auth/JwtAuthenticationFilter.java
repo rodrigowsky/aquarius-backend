@@ -1,6 +1,6 @@
-package com.rodrigowsky.aquarius.filters;
+package com.rodrigowsky.aquarius.filters.auth;
 
-import com.rodrigowsky.aquarius.proxy.UsernamePasswordAuthentication;
+import com.rodrigowsky.aquarius.auth.authObjects.UsernamePasswordAuthentication;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -45,6 +45,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
+    //r takes care of the rest of the endpoints (except login) for which
+    //the JWT tokens need to be validated
+    // applies to all
+    //paths except /login. It validates the JWT
+    //to allow endpoints to be called.
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
         return request.getServletPath().equals("/login");

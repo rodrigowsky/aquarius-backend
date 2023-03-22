@@ -1,7 +1,6 @@
-package com.rodrigowsky.aquarius.repositories;
+package com.rodrigowsky.aquarius.repositories.sql;
 
 import com.rodrigowsky.aquarius.entities.Authority;
-import com.rodrigowsky.aquarius.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AuthorityRepository  extends JpaRepository<Authority,Integer> {

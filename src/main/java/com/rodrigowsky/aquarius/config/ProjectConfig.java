@@ -1,8 +1,7 @@
 package com.rodrigowsky.aquarius.config;
 
-import com.rodrigowsky.aquarius.filters.InitialAuthenticationFilter;
-import com.rodrigowsky.aquarius.filters.JwtAuthenticationFilter;
-import com.rodrigowsky.aquarius.providers.AuthenticationProviderService;
+import com.rodrigowsky.aquarius.filters.auth.InitialAuthenticationFilter;
+import com.rodrigowsky.aquarius.filters.auth.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,17 +12,16 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @Configuration
 public class ProjectConfig {
 
-
-    @Autowired
-    private AuthenticationProviderService authenticationProvider;
-
     @Autowired
     private InitialAuthenticationFilter initialAuthenticationFilter;
 
     @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
 
-
+//    @Bean
+//    public Logger getLogger() {
+//        return LogManager.getLogger();
+//    }
 
 
     @Bean
@@ -39,8 +37,11 @@ public class ProjectConfig {
                         BasicAuthenticationFilter.class
                 );
 
+
         http.authorizeRequests()
-                .anyRequest().authenticated();
+                .anyRequest()
+                .authenticated();
+
 
             return http.build();
         }

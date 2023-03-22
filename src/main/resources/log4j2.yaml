@@ -1,0 +1,16 @@
+# log4j2 configuration file
+config:
+  # Define the logger name
+  name: "MyLogger"
+
+  # Define the log level
+  level: "info"
+
+  # Define the appender type
+  appender:
+    type: "Console"
+
+  # Define the layout
+  layout:
+    type: "PatternLayout"
+    pattern: "[%d{ISO8601}] [%-5p] %c: %m%n"

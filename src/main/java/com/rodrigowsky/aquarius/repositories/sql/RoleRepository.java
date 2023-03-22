@@ -1,4 +1,4 @@
-package com.rodrigowsky.aquarius.repositories;
+package com.rodrigowsky.aquarius.repositories.sql;
 
 import com.rodrigowsky.aquarius.entities.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
